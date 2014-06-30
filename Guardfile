@@ -1,5 +1,7 @@
 require 'active_support/inflector'
 
+notification :notifu, nosound: true
+
 guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' },
                :rspec_env    => { 'RAILS_ENV' => 'test' } do
   watch('config/application.rb')
