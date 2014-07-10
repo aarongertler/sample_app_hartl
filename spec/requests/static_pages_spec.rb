@@ -18,7 +18,7 @@ describe "Static pages" do
     click_link "Help"
     expect(page).to have_title(full_title('Help'))
     click_link "Contact"
-    expect(page).to have_title(full_title('Contact'))
+    expect(page).to have_title(full_title('Contact Us'))
     click_link "sample app"
     expect(page).to have_content('Welcome')
     click_link "Sign up now!"
@@ -45,17 +45,17 @@ describe "Static pages" do
   describe "About page" do
     before { visit about_path }
     let(:heading) { 'About'}
-    let(:page_title) { 'About'}
+    let(:page_title) { 'About Us'}
 
     it_should_behave_like "all static pages"
   end
 
   describe "Contact page" do
     before { visit contact_path }
+    let(:page_title) { 'Contact Us' }
 
     # it { should have_content('Contact') }
     it { should have_selector("h1", text: "Contact") }
-    it { should have_title(full_title('Contact')) }
   end
 end
 
