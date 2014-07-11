@@ -83,5 +83,7 @@ SampleApp::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Do not dump schema after migrations.
-  config.active_record.dump_schema_after_migration = false
+
+  # AARON note: removed the above line to deal w/Heroku error
+  # see https://stackoverflow.com/questions/22707102/cannot-run-any-commands-on-my-heroku-app-migrate-console-etc
 end
