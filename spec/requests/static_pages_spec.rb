@@ -22,7 +22,7 @@ describe "Static pages" do
     click_link "sample app"
     expect(page).to have_content('Welcome')
     click_link "Sign up now!"
-    expect(page).to have_content('Find me')
+    expect(page).to have_content('Sign up')
   end
 
   describe "Home page" do
