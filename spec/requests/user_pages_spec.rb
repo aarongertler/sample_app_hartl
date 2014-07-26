@@ -26,6 +26,11 @@ describe "UserPages" do
     let(:submit) { "Create my account" }
 
     describe "with invalid information" do
+
+      it "should not create a user" do
+        expect { click_button submit }.not_to change(User, :count)
+      end
+
       before do
         fill_in "Name",         with: ""
         fill_in "Email",        with: "aaron@@gertler.com"
@@ -33,11 +38,7 @@ describe "UserPages" do
         fill_in "Confirmation", with: "nope"
       end
 
-      it "should not create a user" do
-        expect { click_button submit }.not_to change(User, :count)
-      end
-
-      describe "after submission" do
+      describe "after submission" do # this needed to be a describe, not an 'it "should..."'
         before { click_button submit }
 
         it { should have_title('Sign up') }
@@ -47,7 +48,6 @@ describe "UserPages" do
         it { should have_content('short') }
         it { should have_content('match') }
       end
-
     end
 
     describe "with valid information" do
@@ -66,10 +66,11 @@ describe "UserPages" do
         before { click_button submit }
         let(:user) { User.find_by(email: 'user@example.com') }
 
+        it { should have_link('Sign out') }
         it { should have_title(user.name) }
-        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { should have_welcome_message('Welcome') }
+        # My first original RSpec matcher!
       end
-
     end
   end 
 end
