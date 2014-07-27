@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
     # We give the user the attribue "remember_token" w/hashed random number
 
   validates :name, presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    # don't quite understand this regex
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
+    # don't quite understand this regex (but does disallow foo@bar..com)
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }

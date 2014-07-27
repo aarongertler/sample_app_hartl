@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password]) 
       # checks that user exists and can be authenticated through the secure_passwords method
       sign_in user # Note: We have to write "sign_in" function ourselves
-      redirect_to user # How does Rails know this represents a web page?
+      redirect_back_or user # How does Rails know this represents a web page?
+      # Using back_or to implement "friendly forwarding"
     else
       flash.now[:error] = 'Wrong email and password'
         # flash.now works for rendered pages, vanishes when users go elsewhere
